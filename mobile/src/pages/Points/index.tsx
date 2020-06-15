@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 import { View,Text,StyleSheet,TouchableOpacity,ScrollView,Image,Alert } from 'react-native'; 
 import { Feather as Icon }  from '@expo/vector-icons'; 
 
-import { useNavigation } from '@react-navigation/native'; 
+import { useNavigation,useRoute } from '@react-navigation/native'; 
 import MapView, { Marker } from 'react-native-maps'; 
 
 import { SvgUri } from 'react-native-svg'; 
@@ -25,6 +25,11 @@ interface Point {
   longitude: number; 
 }
 
+interface Params {
+  uf: string;
+  city: string;
+}
+
 const Points = () => {
 
     const navigation = useNavigation(); 
@@ -33,6 +38,9 @@ const Points = () => {
     const [initialPosition,setInitialPosition] = useState<[number,number]>([0,0]);
     const [points,setPoints] = useState<Point[]>([]); 
 
+    const route = useRoute(); 
+
+    const routeParams = route.params as Params; 
 
     useEffect(() => {
       api.get("items").then((response) => {
@@ -50,9 +58,7 @@ const Points = () => {
         }
 
         const location = await Location.getCurrentPositionAsync();  
-
         const { latitude,longitude } = location.coords; 
-
         setInitialPosition([latitude,longitude]); 
 
       }
@@ -65,15 +71,15 @@ const Points = () => {
       api
         .get("points", {
           params: {
-            city: 'Belo Horizonte',
-            uf: 'MG',
-            items: [1,2,3,4,5,6]
+            city: routeParams.city,
+            uf: routeParams.uf,
+            items: selectedItems
           },
         })
         .then((response) => {
           setPoints(response.data); 
         });
-    }, []); 
+    }, [selectedItems]); 
 
     function handleNavigateBack(){
         navigation.goBack();  

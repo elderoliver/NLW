@@ -7,10 +7,9 @@
   
   #page-create-point header {
     margin-top: 48px;
-  
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    
   }
   
   #page-create-point header a {
@@ -200,4 +199,48 @@
   .items-grid li.selected {
     background: #E1FAEC;
     border: 2px solid #34CB79;
+  }
+
+  @media(max-width: 600px) {
+
+    #page-create-point header {
+      flex-direction: column;
+      align-items: initial;
+      margin-top: 22px;
+      height: 20%;
+      justify-content: space-around;
+    }
+
+    #page-create-point header a {
+      order: -1; 
+      margin-left: 20px; 
+      margin-bottom: 20px;
+    }
+
+    #page-create-point form {
+      margin: 20px auto;
+      padding: 20px;
+      width: 90%;
+    }
+
+    #page-create-point form .field-group {
+      flex-direction: column;
+    }
+
+    #page-create-point form .field-group .field + .field {
+      margin-left: 0px;
+    }
+
+    #page-create-point form button {
+      width: 100%;
+    }
+
+    .items-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #page-create-point form legend {
+      flex-direction: column;
+    }
+
   }

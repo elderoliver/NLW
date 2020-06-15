@@ -5,26 +5,39 @@ import logo from '../../assets/logo.svg';
 
 import { FiLogIn } from 'react-icons/fi';
 
+import imagem from '../../assets/home-background.svg';
+
 const Home = () => {
     return (
         <div id="page-home">
+            
             <div className="content">
+                
                 <header>
-                    <img src={logo} alt="ecoleta"/> 
+                    <img  src={logo} alt="ecoleta"/> 
                 </header>
             
                 <main>
-                    <h1>
-                        Seu marketplace de coleta de resíduos
-                    </h1>
-                    <p>
-                        Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.
-                    </p>
 
-                    <Link to="/create-point">
-                        <span><FiLogIn/></span>
-                        <strong>Cadestre um ponto de coleta</strong>
-                    </Link>
+                
+                    <div className="info">
+                        
+                        <h1 className="mainInfo">
+                            Seu marketplace de coleta de resíduos
+                        </h1>
+                        
+                        <p className="secondInfo">
+                            Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.
+                        </p>
+
+                        <Link to="/create-point">
+                            <span><FiLogIn/></span>
+                            <strong>Cadastre um ponto de coleta</strong>
+                        </Link>
+                    </div>
+
+                    <img className="imgMain" src={imagem} alt="imagem" />
+                    
                 </main>
 
             </div>
